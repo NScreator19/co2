@@ -127,7 +127,7 @@ fuel_ef = st.number_input("fuel_ef  (kg CO2/MJ)", value=10.0958)
 calcination_factor = st.number_input("Calcination Factor (kg CO2/kg Clinker)", value=0.531)
 
 co2_process = clinker_factor * calcination_factor * 10  # dikali 10 untuk ton cement eq
-co2_fuel = stec * fuel_ef * (1 - tsr / 100) * clinker_factor / 100000
+co2_fuel = stec * fuel_ef * (1 - tsr / 100) * clinker_factor / 100
 co2_net = co2_process + co2_fuel
 
 st.metric("CO2 Specific Net (kg CO2/ton cement Eq)", f"{co2_net:.0f}")
