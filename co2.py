@@ -123,13 +123,13 @@ st.header("🔍 Simulasi Emisi CO₂ Berdasarkan Clinker Factor Konsolidasi")
 clinker_factor = st.number_input("Clinker Factor Konsolidasi (%)", min_value=0.0, max_value=100.0, value=cf_awal)
 stec = st.number_input("STEC (MJ/ton Clinker)", value=3340.0)
 tsr = st.number_input("TSR  (%)", value=13.0)
-fuel_ef = st.number_input("fuel_ef  (kg CO2/MJ)", value=10.0958)
+fuel_ef = st.number_input("fuel_ef  (kg CO2/MJ)", value=0.0958)
 calcination_factor = st.number_input("Calcination Factor (kg CO2/kg Clinker)", value=0.531)
 factor = st.number_input("factor adj", value=1.01)
 
-co2_process = clinker_factor * calcination_factor * 10  # dikali 10 untuk ton cement eq
-co2_fuel = stec * fuel_ef * (1 - tsr / 100) * clinker_factor / 100
-co2_net = co2_process + co2_fuel
-co2_total = co2_net *factor 
+co2_process = clinker_factor/100  * calcination_factor * 1000
+co2_fuel = stec * fuel_ef * (1 - tsr / 100) * clinker_factor/100
+co2_tot = co2_process + co2_fuel
+co2_total=co2_tot * factor 
 
 st.metric("CO2 Specific Net (kg CO2/ton cement Eq)", f"{co2_net:.0f}")
